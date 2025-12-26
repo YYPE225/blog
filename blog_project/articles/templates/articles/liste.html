@@ -1,18 +1,36 @@
 {% extends 'base.html' %}
-
 {% block title %}Liste des articles{% endblock %}
 
+
 {% block content %}
+<form method="get">
+    <input type="text" name="q" placeholder="Rechercher un article" value="{{ query|default:'' }}">
+    <button type="submit">Rechercher</button>
+</form>
 <h1>Articles</h1>
 
 <ul>
-    {% for article in articles %}
-        <li>
-            <a href="{% url 'articles:detail' article.id %}">{{ article.titre }}</a>
-            — {{ article.auteur.username }}
-        </li>
+    {% for article in page_obj %}
+        <div class="article-card">
+            <a href="{% url 'articles:detail' article.id %}">
+                {{ article.titre }}
+            </a>
+            <p>Par {{ article.auteur.username }}</p>
+        </div>
     {% empty %}
         <li>Aucun article disponible</li>
     {% endfor %}
 </ul>
+
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+    {% endif %}
+
+    <span>Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Suivant</a>
+    {% endif %}
+</div>
 {% endblock %}

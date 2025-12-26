@@ -4,11 +4,22 @@ from .forms import ArticleForm
 from .forms import CommentaireForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.core.paginator import Paginator
 
 
 def liste_articles(request):
-    articles = Article.objects.all().order_by('-date_creation')
-    return render(request, 'articles/liste.html', {'articles': articles})
+    query = request.GET.get('q')
+    if query:
+        articles_list = Article.objects.filter(titre__icontains=query).order_by('-date_creation')
+    else:
+        articles_list = Article.objects.all().order_by('-date_creation')
+
+    paginator = Paginator(articles_list, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'articles/liste.html', {'page_obj': page_obj,
+                                                   'query': query})
 
 
 def detail_article(request, id):

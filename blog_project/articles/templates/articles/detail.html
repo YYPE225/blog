@@ -3,14 +3,19 @@
 {% block title %}{{ article.titre }}{% endblock %}
 
 {% block content %}
-<h1>{{ article.titre }}</h1>
-<p>{{ article.contenu }}</p>
-<p>Publié par {{ article.auteur.username }} le {{ article.date_creation }}</p>
+<div class="article-card">
+    <h1>{{ article.titre }}</h1>
+    <p>{{ article.contenu }}</p>
+    <small>Publié par {{ article.auteur.username }} le {{ article.date_creation }}</small>
+</div>
 
 <h2>Commentaires</h2>
 <ul>
     {% for commentaire in commentaires %}
-        <li>{{ commentaire.auteur.username }} : {{ commentaire.contenu }}</li>
+        <div class="commentaire">
+        <strong>{{ commentaire.auteur.username }}</strong>
+        <p>{{ commentaire.contenu }}</p>
+    </div>
     {% empty %}
         <li>Aucun commentaire</li>
     {% endfor %}
