@@ -1,15 +1,9 @@
-Parfait, très bonne démarche 👍
-Tu as **raison** : un projet CV **sans README propre est incomplet**.
-Je vais te fournir un **README professionnel**, cohérent avec **TON DEUXIÈME PROJET (Blog Django)**, en gardant le **même niveau de sérieux** que le premier, mais sans copier-coller.
-
-Je l’adapte aussi avec :
 
 * **Nom GitHub** : `YYPE225`
 * **Nom complet** : `YAPI YAPO PAUL EMMANUEL`
 * **Repo** : `mesprojets`
 * **Projet 2** (blog)
 
-Tu pourras bien sûr ajuster le nom du dossier (`projet2` par exemple).
 
 ---
 
